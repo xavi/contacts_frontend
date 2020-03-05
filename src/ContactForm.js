@@ -81,7 +81,7 @@ export default function ContactForm(props) {
           placeholder="Email"
           value={email || ''}
           onChange={handleInputChange} />
-        <small className="error">{errors.email}</small>
+        <small className="error">{(errors.email || []).join(', ')}</small>
       </div>
       <button>Save</button>
       <button type="button" className="link-button" onClick={onCancel}>Cancel</button>
