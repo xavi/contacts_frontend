@@ -21,8 +21,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# Ignore local environment setup
-# https://devcenter.heroku.com/articles/getting-started-with-rails6#create-a-procfile
-# https://github.com/mars/create-react-app-buildpack#set-vars-for-local-dev
-.env
