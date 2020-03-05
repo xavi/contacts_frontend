@@ -30,6 +30,6 @@ export default function ContactView(props) {
           delete
         </button>
       </div>
-  </div>
+    </div>
   );
 }
