@@ -4,7 +4,7 @@ import ContactForm from './ContactForm';
 import ContactView from './ContactView';
 
 function App() {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState(null);
   const [draft, setDraft] = useState(null);
 
   useEffect(() => {
@@ -62,25 +62,28 @@ function App() {
         <button onClick={() => setDraft({})}>New</button>
       )}
 
-      <div className="contacts">
-        {contacts.map(contact => (
-          <div key={contact.id} className="contact">
-            {draft !== null && draft.id === contact.id ? (
-              <ContactForm
-                initialValues={contact}
-                onSuccess={handleUpdatedContact}
-                onCancel={() => setDraft(null)}
-              />
-            ) : (
-              <ContactView
-                contact={contact}
-                onEdit={() => setDraft(contact)}
-                onDelete={() => deleteContact(contact.id)}
-              />
-            )}
+      {contacts === null
+        ? <p>Loading contacts...</p>
+        : <div className="contacts">
+            {contacts.map(contact => (
+              <div key={contact.id} className="contact">
+                {draft !== null && draft.id === contact.id ? (
+                  <ContactForm
+                    initialValues={contact}
+                    onSuccess={handleUpdatedContact}
+                    onCancel={() => setDraft(null)}
+                  />
+                ) : (
+                  <ContactView
+                    contact={contact}
+                    onEdit={() => setDraft(contact)}
+                    onDelete={() => deleteContact(contact.id)}
+                  />
+                )}
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+      }
     </div>
   );
 }
